@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VendorPage</title>
+    <link rel="stylesheet" href="./CSS/update_vendor.css">
+</head>
+<body>
+    <center>
+    
+    <form class="form" id="form">
+        
+        
+        <label>
+            <input class="input" name="id" id="id" type="number" placeholder="" required="" readonly>
+            <span id="err_name">id</span>
+        </label>
+        <label>
+            <input class="input" name="name" id="name" type="text" placeholder="" required="">
+            <span id="err_name">Name</span>
+        </label>
+        <label>
+            <input class="input"  name="phoneNo" id="phoneNo" type="number" placeholder="" required="">
+            <span  id="err_phone">Phone</span>
+        </label> 
+        <label>
+            <input class="input" name="costPerDay" id="costPerDay" type="number" placeholder="" required="">
+            <span  id="err_cost">CostPerDay</span>
+        </label>   
+        <label>
+            <input class="input" name="role" id="role" type="text" placeholder="" required="">
+            <span  id="err_role">Role</span>
+        </label>     
+        <label>
+            <input class="input" name="email" id="email" type="email" placeholder="" required="">
+            <span id="err_email">Email</span>
+        </label> 
+            
+        <label>
+            <input class="input" name="password" id="password" type="password" placeholder="" required="">
+            <span  id="err_password">Password</span>
+        </label>
+        <label>
+            <input class="input" name="confirm_password" id="confirm_password" type="password" placeholder="" required="">
+            <span id="err_conPass">Confirm password</span>
+        </label>
+        <p id="address">Address</p>
+       
+        <div class="flex">
+            <label>
+                <input required="" id="d_No" name="d_No" placeholder="" type="text" class="input">
+                <span id="err_DoorNo">DoorNo</span>
+            </label>
+    
+            <label>
+                <input required="" id="street" name="street" placeholder="" type="text" class="input">
+                <span id="err_Street">Street</span>
+            </label>
+        </div>  
+        <div class="flex">
+            <label>
+                <input required="" id="landMark" name="landMark" placeholder="" type="text" class="input">
+                <span id="err_LandMark">LandMark</span>
+            </label>
+    
+            <label>
+                <input required="" id="pincode" name="pincode" placeholder="" type="number" class="input">
+                <span id="err_Zipcode">PinCode</span>
+            </label>
+        </div>  
+        <div class="flex">
+            <label>
+                <input required="" id="district" name="district" placeholder="" type="text" class="input">
+                <span id="err_dist">District</span>
+            </label>
+    
+            <label>
+                <input required="" id="state" name="state" placeholder="" type="text" class="input">
+                <span id="err_state">State</span>
+            </label>
+        </div>  
+       
+        <button class="submit">Submit</button>
+        <p class="signin">Already have an acount ? <a href="./vendor_loging.html">Signin</a> </p>
+        
+
+    </form>
+</center>
+<script src="./Js/update_vendor.js"></script>
+</body>
+</html>

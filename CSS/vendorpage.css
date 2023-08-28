@@ -1,0 +1,104 @@
+#main{
+    position: sticky;
+    background-color: yellow;
+  
+  
+  
+  }
+  #nav ol{
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-around;
+      width: 100%;
+      list-style: none;
+      
+  }
+  #nav li{
+      /* border: 2px solid; */
+     
+      
+      font-size: 20px;
+      padding:0%;
+  }
+  #nav li:hover{
+      color: blue;
+  }
+  #section{
+      border: 2px solid;
+      border-radius: 50% 50%;
+      height: 350px;
+      /* width: 700px; */
+      width: 70%;
+      background-color: rgb(118, 109, 109);
+      margin-top: 30px;
+      display: none;
+      
+      
+  
+  }
+  #cus_section{
+      color: white;
+  }
+  .form_in{
+      width: 40%;
+      height: 30px;
+      border-radius: 15px 15px;
+      text-align: center;
+      outline: none;
+  }
+  #work_btn{
+      background-color: blue;
+      width: 100px;
+      height: 30px;
+  }
+  #drop_section{
+    display: none;
+    /* position: absolute; */
+  }
+  #dropdown{
+    
+    width: 150px;
+    list-style: none;
+    border: none;
+    position: absolute;
+    /* left: 50%; */
+   
+    top: 9%;
+    
+  }
+  #dropdown li{
+    /* padding-top: 10px; */
+    font-size: 20px;
+    /* font-weight: 500; */
+    text-transform: capitalize;
+    border: 1px solid #b637b2 ;
+     padding-top: 5px;
+     padding-bottom: 5px;
+    color: #000;
+  
+    background-color: white;
+    
+  }
+  #dropdown li:hover{
+
+    background-color: cornflowerblue;
+     transition: ease all .5s;
+    font-family:monospace,sans-serif ;
+  }
+  #startwork{
+    color: lawngreen;
+    border: 2px;
+  }
+  #endwork{
+    color: lawngreen;
+    border: 2px;
+  }
+  #work_table{
+    display: none;
+  }
+  #table{
+    width: 50%;
+  }
+  #table tr td,th{
+    font-size: 20px;
+  }

@@ -1,0 +1,125 @@
+*{
+    padding:0%;
+    margin: 0%;
+    box-sizing: border-box;
+
+}
+#main1{
+    /* border: 2px solid; */
+    height: 70px;
+
+}
+#main{
+    width: 80%;
+    margin: auto;
+    /* border: 2px solid; */
+    height: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+#sub-nav ol{
+    list-style: none;
+    padding: 0%;
+    /* border: 2px solid; */
+    display: inline-flex;
+    align-items: center;
+   justify-content: space-between;
+    gap: 80px;
+    font-size: 20px;
+}
+#sub-nav1{
+    border: 2px solid;
+    width: 100px;
+    position: absolute;
+    left: 68%;
+    padding: 0%;
+    list-style: none;
+    height: 100px;
+ display: none;
+}
+#sub-nav1 li{
+    text-align: center;
+    padding: 15px;
+    font-size: 20px;
+    font-weight: bold;
+}
+#sub-nav1 li a{
+    text-decoration: none;
+}
+#sub-nav1 li:hover{
+    background-color: #b637b2;
+    
+}
+#sub-nav1 li a:hover{
+    color: white;
+}
+#sub-nav2{
+    border: 2px solid;
+    width: 100px;
+    position: absolute;
+    left: 82%;
+    padding: 0%;
+    list-style: none;
+    height: 100px;
+ display: none;
+}
+#sub-nav2 li{
+    text-align: center;
+    padding: 15px;
+    font-size: 20px;
+    font-weight: bold;
+
+}
+#sub-nav2 li:hover{
+    background-color: #b637b2;
+   
+}
+#sub-nav2 li a:hover{
+    color: white;
+}
+#sub-nav2 li a{
+    text-decoration: none;
+}
+#drop-down{
+    list-style: none;
+    padding: 0%;
+    border: 2px solid;
+    position: absolute;
+    left: 425px;
+    width: 200px;
+    top: 46px;
+    display: none;
+}
+#drop-down li{
+    padding-top: 10px;
+    font-size: 16px;
+    font-weight: 500;
+    text-transform: capitalize;
+    border: 1px solid #b637b2 ;
+    text-indent: 50px;
+    padding-bottom:15px;
+    color: #000;
+    border-left: none;
+    border-top: none;
+  border-left: none;
+    background-color: white;
+
+
+}
+#drop-down li:hover{
+    background-color:#b637b2 ;
+    color:white;
+    transition: ease all .5s;
+    font-family:monospace,sans-serif ;
+
+
+}
+#bg-image{
+    background-image: url("../Image/HOME-CLEANING.webp");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    height: 200px;
+}
