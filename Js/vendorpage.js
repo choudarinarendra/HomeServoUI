@@ -193,14 +193,15 @@ let endWork=document.getElementById("work_end")
       data.data.map((a)=>{
          
             if(a.startDate!==null&&a.endDate===null){
-             
+             if(a.vendor.id===Number(sessionStorage.getItem("Ven_id"))){
               let li=document.createElement("li")
               li.setAttribute("id",`${a.id}`)
               
              li.textContent=a.typeOfWork
             
              dropdown.appendChild(li)
-               
+            
+             }
 
             }
       })
@@ -260,8 +261,8 @@ async function pendingwork(id){
            method:"PUT"
          })
          let data=await promi.json()
-        
-         let promi1=await fetch(`http://localhost:8080/cost/${id}/${Number(sessionStorage.getItem("Ven_id"))}`,{
+            console.log(data.data.id);
+         let promi1=await fetch(`http://localhost:8080/cost/${data.data.id}/${Number(sessionStorage.getItem("Ven_id"))}`,{
           method:"POST",
           
         })
@@ -285,63 +286,47 @@ async function pendingwork(id){
       }
     let promi=await fetch(`http://localhost:8080/works/${Number(sessionStorage.getItem("Ven_id"))}`)
     let data=await promi.json()
-    
-    //work Arraylist
-    let num=0
-       data.data.map((work)=>{
-            //vendor ArrayList
-             
-            work.list.map((cust)=>{
-            
-              if(cust.id===Number(sessionStorage.getItem("Ven_id"))){
-               
-              
-                 let row=document.createElement('tr')
-                 table.appendChild(row)
-                 let workname=document.createElement('td')
-                 workname.textContent=work.typeOfWork
-                 row.appendChild(workname)
-                 let startDate=document.createElement('td')
-                 startDate.textContent=work.startDate
-                 row.appendChild(startDate)
-                 let endDate=document.createElement('td')
-                  endDate.textContent=work.endDate
-                  // console.log(work.endDate);
-                   row.appendChild(endDate)
-                   //cost ArrayList
-                   console.log("div");
-                    
-                    
-                    cust.cost.map((cost,ind)=>{
+         let num=0
+         data.data.map((work)=>{
+            if(work.vendor!=null){
+             if(work.vendor.id===Number(sessionStorage.getItem("Ven_id"))){
+               console.log(work);
+              let row=document.createElement('tr')
+              table.appendChild(row)
+              let workname=document.createElement('td')
+              workname.textContent=work.typeOfWork
+              row.appendChild(workname)
+              let startDate=document.createElement('td')
+              startDate.textContent=work.startDate
+              row.appendChild(startDate)
+              let endDate=document.createElement('td')
+               endDate.textContent=work.endDate
+                row.appendChild(endDate)
+                work.vendor.cost.map((cost,ind)=>{
                      
-                      if(ind===num){
-                        
-                        let totalAmount=document.createElement('td');
-                        totalAmount.textContent=cost.totalAmount
-                        row.appendChild(totalAmount)
-                        
-                        let mode=document.createElement('td');
-                        mode.textContent=cost.mode
-                        row.appendChild(mode)
-                        
-                      
-                      }
-                      
-                      
-
-                      
-                    })
+                  if(ind===num){
                     console.log(num);
-                    num++
-                  
+                    let totalAmount=document.createElement('td');
+                    totalAmount.textContent=cost.totalAmount
+                    row.appendChild(totalAmount)
                     
+                    let mode=document.createElement('td');
+                    mode.textContent=cost.mode
+                    row.appendChild(mode)
+                    
+                  
+                  }
+                  
+                  
 
-                   
-              }
-            })
-          
-       })
+                  
+                })
+                
+                    num++
 
-       
-
- })
+             }
+            }
+         })
+    
+    
+ })  

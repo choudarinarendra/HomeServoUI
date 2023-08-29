@@ -254,7 +254,7 @@ let data =await promis.json()
                          let li=document.createElement('li')
                         li.textContent=work.typeOfWork
                         li.setAttribute('id',work.cost.id)
-                        li.setAttribute('name',work.list[0].id)     
+                        li.setAttribute('name',work.vendor.id)     
                         dropdown.appendChild(li)          
             }
                
