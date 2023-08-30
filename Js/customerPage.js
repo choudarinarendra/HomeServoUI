@@ -7,6 +7,7 @@ details.addEventListener('click',()=>{
     let cus_section=document.getElementById("cus_section")
     sect_dropdown.style.display='none'
     section.style.display="block"
+    section.style.height="350px"
    if(cus_section.firstChild){
     while (cus_section.firstChild) {
         cus_section.removeChild(cus_section.firstChild);
@@ -53,13 +54,14 @@ savework_btn.addEventListener('click',()=>{
     let cus_section=document.getElementById("cus_section")
     sect_dropdown.style.display='none'
     section.style.display="block"
+    section.style.height="500px"
    if(cus_section.firstChild){
     while (cus_section.firstChild) {
         cus_section.removeChild(cus_section.firstChild);
       }
      
    }
-   cus_section.style.marginTop="40px"
+  //  cus_section.style.marginTop="10px"
 let form=document.createElement("form")
   form.setAttribute("id","form")
 cus_section.appendChild(form)
@@ -127,8 +129,8 @@ cus_section.appendChild(form)
   form.appendChild(state )
   let brek7=document.createElement("br")
   form.appendChild(brek7)
-  let brek8=document.createElement("br")
-  form.appendChild(brek8)
+  // let brek8=document.createElement("br")
+  // form.appendChild(brek8)
   //button
   let button=document.createElement("button")
    button.setAttribute("id","work_btn")
@@ -232,8 +234,11 @@ async function savework(work){
  let payment=document.getElementById("payment")
  payment.addEventListener(('click'),async ()=>{
   section.style.display='none'
+  section.style.height="550px"
+  
   sect_dropdown.style.display='block'
   let dropdown=document.getElementById("dropdown")
+  dropdown.style.left='64%'
 while(dropdown.firstChild){
   dropdown.removeChild(dropdown.firstChild)
 }
@@ -246,10 +251,13 @@ let data =await promis.json()
          let promis1=await fetch(`http://localhost:8080/works/${data[0].id}`)
      let data1 =await promis1.json()
        data1.data.map((work)=>{
+        
         if(work.customer.id===Number(sessionStorage.getItem('cust_id'))){
           if(work.startDate!=null&work.endDate!=null){
-        
+                 if(work.cost!==null){
+                  
             if(work.cost.mode===null){
+             
             
                          let li=document.createElement('li')
                         li.textContent=work.typeOfWork
@@ -257,7 +265,7 @@ let data =await promis.json()
                         li.setAttribute('name',work.vendor.id)     
                         dropdown.appendChild(li)          
             }
-               
+          }
           }
         }
         let liElements=document.querySelectorAll("#dropdown li")
@@ -419,4 +427,67 @@ let data =await promis.json()
    })
    let data =await promi.json()
    section.style.display="none"
+ }
+ //-----------------------List of Vendor-----------------------------
+ let list_ven=document.getElementById("list_vendor")
+ list_ven.addEventListener("click",async ()=>{
+  section.style.display='none'
+  section.style.height="550px"
+ 
+  sect_dropdown.style.display='block'
+  let dropdown=document.getElementById("dropdown")
+  dropdown.style.left="79%"
+  while(dropdown.firstChild){
+    dropdown.removeChild(dropdown.firstChild)
+  }
+  
+    let promis=await fetch(`http://localhost:8080/vendors/All/${Number(sessionStorage.getItem('cust_id'))}`)
+  let data =await promis.json()
+  
+  data.map((vendor)=>{
+    
+    let li=document.createElement('li')
+    li.textContent=vendor.name
+    li.setAttribute('id',vendor.id)
+       
+    dropdown.appendChild(li)  
+  })
+  
+  let liElements=document.querySelectorAll("#dropdown li")
+  
+  liElements.forEach((li)=>{
+   li.addEventListener('click',()=>{
+            
+    listOfV(Number(li.id))
+   })
+    
+ })
+ })
+
+async function listOfV(vendorid){
+  section.style.display='block'
+  sect_dropdown.style.display='none'
+  section.style.height="350px"
+  let vendordata= await fetch(`http://localhost:8080/vendors/${vendorid}`)
+  let vend=await  vendordata.json()
+
+  let cus_section=document.getElementById("cus_section")
+  while(cus_section.firstChild){
+    cus_section.removeChild(cus_section.firstChild)
+  }
+  let Ven_name=document.createElement("h1")
+  Ven_name.textContent=`VendorName:${vend.data.name}`
+  cus_section.appendChild(Ven_name)
+  let ven_num=document.createElement("h1")
+  ven_num.textContent=`VendorPhno:${vend.data.phoneNo}`
+  cus_section.appendChild(ven_num)
+  let ven_Email=document.createElement("h1")
+     ven_Email.textContent=`Email:${vend.data.email}`
+     cus_section.appendChild(ven_Email)
+  let ven_cost=document.createElement("h1")
+  ven_cost.textContent=`CostPerDay:${vend.data.costPerDay}`
+  cus_section.appendChild(ven_cost)
+  let ven_Role=document.createElement("h1")
+  ven_Role.textContent=`Role:${vend.data.role}`
+  cus_section.appendChild(ven_Role)
  }

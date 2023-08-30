@@ -1,7 +1,16 @@
-#main{
+*{
+  margin: 0%;
+  padding: 0%;
+}
+
+
+main #nav ol{
     position: sticky;
     background-color: yellow;
-  
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 50px;
   
   
   }
@@ -25,26 +34,33 @@
   }
   #section{
       border: 2px solid;
-      border-radius: 50% 50%;
+      border-radius: 15px;
       height: 350px;
       /* width: 700px; */
       width: 70%;
-      background-color: rgb(118, 109, 109);
+      /* background-color: rgb(118, 109, 109); */
       margin-top: 30px;
       display: none;
-      
-      
+      background-image: url("http://www.ezhomeservices.in/images/home-cleaning-services.jpg");
+     background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
   
   }
   #cus_section{
-      color: white;
+      color: #fff;
+      padding-top: 30px;
+      line-height: 50px;
   }
+
+  
   .form_in{
       width: 40%;
       height: 30px;
       border-radius: 15px 15px;
       text-align: center;
       outline: none;
+
   }
   #work_btn{
       background-color: blue;
@@ -86,19 +102,35 @@
     font-family:monospace,sans-serif ;
   }
   #startwork{
-    color: lawngreen;
+    color:blue;
     border: 2px;
+    font-weight: bold;
+    text-transform: uppercase;
+    word-spacing: 10px;
   }
   #endwork{
-    color: lawngreen;
+    color:blue;
     border: 2px;
+    font-weight: bold;
+    text-transform: uppercase;
+    word-spacing: 10px;
   }
   #work_table{
     display: none;
   }
   #table{
     width: 50%;
+   
   }
   #table tr td,th{
     font-size: 20px;
+    padding: 20px;
   }
+  #cost-btn{
+    color:blue;
+    border: 2px;
+    font-weight: bold;
+    text-transform: uppercase;
+    word-spacing: 10px;
+  }
+  

@@ -86,7 +86,7 @@ let  cust_update=document.getElementById("vend_update")
       let data=await promi.json()
      //  console.log(data);
      let dropdown=document.getElementById("dropdown")
-     dropdown.style.left="52%"
+     dropdown.style.left="38%"
 
      while(dropdown.firstChild){
       dropdown.removeChild(dropdown.firstChild)
@@ -183,7 +183,8 @@ let endWork=document.getElementById("work_end")
       let data=await promi.json()
      //  console.log(data);
      let dropdown=document.getElementById("dropdown")
-     dropdown.style.left="70%"
+     dropdown.style.left="54%"
+     dropdown.style.top = "45px"
 
      while(dropdown.firstChild){
       dropdown.removeChild(dropdown.firstChild)
@@ -210,9 +211,8 @@ let liElements=document.querySelectorAll("#dropdown li")
 
   liElements.forEach((li)=>{
     li.addEventListener('click',()=>{
-    
-     pendingwork(Number(li.id))
-        
+       
+      pendingwork(Number(li.id))
      
     })
     
@@ -262,11 +262,11 @@ async function pendingwork(id){
          })
          let data=await promi.json()
             console.log(data.data.id);
-         let promi1=await fetch(`http://localhost:8080/cost/${data.data.id}/${Number(sessionStorage.getItem("Ven_id"))}`,{
-          method:"POST",
+        //  let promi1=await fetch(`http://localhost:8080/cost/${data.data.id}/${Number(sessionStorage.getItem("Ven_id"))}`,{
+        //   method:"POST",
           
-        })
-        let data1=await promi1.json()
+        // })
+        // let data1=await promi1.json()
        
 
          section.style.display="none"
@@ -281,12 +281,13 @@ async function pendingwork(id){
     drop_setion.style.display="none"
     work_table.style.display='block'
     let table=document.getElementById("table")
+    table.setAttribute("cellpadding","30px")
       while(table.children.length>1){
         table.removeChild(table.lastChild)
       }
     let promi=await fetch(`http://localhost:8080/works/${Number(sessionStorage.getItem("Ven_id"))}`)
     let data=await promi.json()
-         let num=0
+         
          data.data.map((work)=>{
             if(work.vendor!=null){
              if(work.vendor.id===Number(sessionStorage.getItem("Ven_id"))){
@@ -302,27 +303,26 @@ async function pendingwork(id){
               let endDate=document.createElement('td')
                endDate.textContent=work.endDate
                 row.appendChild(endDate)
-                work.vendor.cost.map((cost,ind)=>{
-                     
-                  if(ind===num){
-                    console.log(num);
-                    let totalAmount=document.createElement('td');
-                    totalAmount.textContent=cost.totalAmount
+                if(work.cost!==null){
+                  let totalAmount=document.createElement('td');
+                    totalAmount.textContent=work.cost.totalAmount
                     row.appendChild(totalAmount)
                     
                     let mode=document.createElement('td');
-                    mode.textContent=cost.mode
+                    mode.textContent=work.cost.mode
                     row.appendChild(mode)
-                    
+                    console.log("hello");
+                }else if(work.endDate===null){
+               
+                  let totalAmount=document.createElement('td');
+                  // totalAmount.textContent=cost.totalAmount
+                  row.appendChild(totalAmount)
                   
-                  }
-                  
-                  
-
-                  
-                })
+                  let mode=document.createElement('td');
+                  // mode.textContent=cost.mode
+                  row.appendChild(mode)
+                }
                 
-                    num++
 
              }
             }
@@ -330,3 +330,113 @@ async function pendingwork(id){
     
     
  })  
+ //-----------------------------------cost Generation----------------------------
+ let cost=document.getElementById("cost")
+ cost.addEventListener("click",()=>{
+  section.style.display="none"
+    work_table.style.display='none'
+    drop_setion.style.display="block"
+    console.log("hello");
+    demo2()
+
+ })
+  async function  demo2(){
+    let promi=await fetch(`http://localhost:8080/works/${Number(sessionStorage.getItem("Ven_id"))}`)
+    let data=await promi.json()
+    let dropdown=document.getElementById("dropdown")
+     dropdown.style.left="69%"
+     dropdown.style.top = "45px"
+
+     while(dropdown.firstChild){
+      dropdown.removeChild(dropdown.firstChild)
+     }
+     data.data.map((a)=>{
+         
+      if(a.startDate!==null&&a.endDate!==null){
+        if(a.vendor!==null){
+          if(a.cost==null){
+       if(a.vendor.id===Number(sessionStorage.getItem("Ven_id"))){
+        let li=document.createElement("li")
+        li.setAttribute("id",`${a.id}`)
+        
+       li.textContent=a.typeOfWork
+      
+       dropdown.appendChild(li)
+       }
+       }
+      }
+      }
+})
+
+let liElements=document.querySelectorAll("#dropdown li")
+
+liElements.forEach((li)=>{
+li.addEventListener('click',()=>{
+
+  costGeneration(Number(li.id))
+  
+
+})
+
+})
+   }
+
+
+ async function costGeneration(id){
+  let promi= await fetch(`http://localhost:8080/works/${Number(sessionStorage.getItem("Ven_id"))}/${id}`)
+  let data=await promi.json()
+   
+    
+    section.style.display="block"
+    drop_setion.style.display="none"
+    let cus_section=document.getElementById("cus_section")
+    while(cus_section.firstChild){
+     cus_section.removeChild(cus_section.firstChild)
+    }
+    //customerName
+    let customerName=document.createElement("h1")
+    customerName.textContent=`CustName:${data.data.customer.name}`
+    cus_section.appendChild(customerName)
+    //phone
+   let phone=document.createElement("h1");
+   phone.textContent=`CustomerPhno:${data.data.customer.phone}`
+   cus_section.appendChild(phone)
+   //workName
+   let workName=document.createElement("h1")
+   workName.textContent=`WorkName:${data.data.typeOfWork}`
+   cus_section.appendChild(workName)
+   //start work
+   let startwork=document.createElement("h1")
+    startwork.textContent=`Starting Date:${data.data.startDate}`
+    cus_section.appendChild(startwork)
+    //end work
+    let endwork=document.createElement("h1")
+    endwork.textContent=`Ending Date:${data.data.endDate}`
+    cus_section.appendChild(endwork)
+     // cost button
+     let cost_btn=document.createElement("h1")
+     cost_btn.setAttribute("id","cost-btn")
+      cost_btn.textContent="Cost"
+      cus_section.appendChild(cost_btn)
+      cost_btn.onclick=async ()=>{
+        console.log(id);
+         let promi1=await fetch(`http://localhost:8080/cost/${id}/${Number(sessionStorage.getItem("Ven_id"))}`,{
+          method:"POST",
+          
+        })
+        let data1=await promi1.json()
+         console.log(data1);
+
+         section.style.display="none"
+      }
+
+
+  }
+
+  //-----------------------------logout-----------------------
+  let  logOut=document.getElementById("logout")
+  logOut.addEventListener('click',()=>{
+   sessionStorage.removeItem("Ven_id")
+   //window.location.href ="./index.html"
+   window.open("./index.html","_self")
+  })

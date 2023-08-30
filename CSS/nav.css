@@ -71,6 +71,17 @@
     font-weight: bold;
 
 }
+
+#nav span p{
+    background-image: url("../Image/logo.png");
+    height: 100px;
+    width: 100px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    z-index: -1;
+}
+
 #sub-nav2 li:hover{
     background-color: #b637b2;
    
