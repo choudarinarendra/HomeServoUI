@@ -39,12 +39,12 @@ service.addEventListener('click',()=>{
         dropdown.style.display="none"
     }
 })
-let bg_image=document.getElementById("bg-image")
-bg_image.addEventListener('click',()=>{
-    let dropdown=document.querySelector("#drop-down")
-    console.log(dropdown);
-    let display=dropdown.classList.toggle("block")
-    if(display){
-        dropdown.style.display="none"
-    }
-})
+// let bg_image=document.getElementById("bg-image")
+// bg_image.addEventListener('click',()=>{
+//     let dropdown=document.querySelector("#drop-down")
+//     console.log(dropdown);
+//     let display=dropdown.classList.toggle("block")
+//     if(display){
+//         dropdown.style.display="none"
+//     }
+// })
