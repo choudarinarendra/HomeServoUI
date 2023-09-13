@@ -63,6 +63,7 @@ let  cust_update=document.getElementById("vend_update")
   fetch(`http://localhost:8080/vendors/${Number(sessionStorage.getItem("Ven_id"))}`,{
     method:"DELETE"
   })
+  window.alert("your Account Successfully Deleted")
   sessionStorage.removeItem("Ven_id")
   window.open("./index.html","_self")
  }
@@ -118,8 +119,9 @@ let liElements=document.querySelectorAll("#dropdown li")
     })
     
   })
-
-     
+    if(dropdown.children.length===0){
+     window.alert("No work present in webSite") 
+    }
  }
 
 async function workfetch(id) {
@@ -164,7 +166,7 @@ async function workfetch(id) {
           method:"PUT"
         })
         let data=await promi.json()
-        
+          window.alert("Your Work Started now")
         section.style.display="none"
 
   }
@@ -217,6 +219,9 @@ let liElements=document.querySelectorAll("#dropdown li")
     })
     
   })
+  if(dropdown.children.length===0){
+    window.alert("NO Pending Works")
+  }
  }
 
 async function pendingwork(id){
@@ -268,7 +273,7 @@ async function pendingwork(id){
         // })
         // let data1=await promi1.json()
        
-
+           window.alert("Yours work successfully completed")
          section.style.display="none"
  
    }
@@ -315,11 +320,20 @@ async function pendingwork(id){
                 }else if(work.endDate===null){
                
                   let totalAmount=document.createElement('td');
-                  // totalAmount.textContent=cost.totalAmount
+                
                   row.appendChild(totalAmount)
                   
                   let mode=document.createElement('td');
-                  // mode.textContent=cost.mode
+                 
+                  row.appendChild(mode)
+                }else{
+                
+                  let totalAmount=document.createElement('td');
+                
+                  row.appendChild(totalAmount)
+                  
+                  let mode=document.createElement('td');
+                 
                   row.appendChild(mode)
                 }
                 
@@ -379,6 +393,9 @@ li.addEventListener('click',()=>{
 })
 
 })
+  if(dropdown.children.length===0){
+    window.alert("No Completed works ")
+  }
    }
 
 
@@ -426,6 +443,7 @@ li.addEventListener('click',()=>{
         })
         let data1=await promi1.json()
          console.log(data1);
+         window.alert("Cost Generation Successfully")
 
          section.style.display="none"
       }

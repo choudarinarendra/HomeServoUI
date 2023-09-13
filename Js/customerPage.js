@@ -192,6 +192,7 @@ async function savework(work){
     body:JSON.stringify(work)
    })
    let data= await promi.json();
+   window.alert("save the Work Successfully")
      let inputs=document.getElementsByTagName("input")
      inputs[0].value=""
      inputs[1].value=""
@@ -210,6 +211,7 @@ async function savework(work){
   fetch(`http://localhost:8080/customers/${Number(sessionStorage.getItem("cust_id"))}`,{
     method:"DELETE"
   })
+  window.alert("Customer Details Successfully Deleted")
   sessionStorage.removeItem("cust_id")
   window.open("./index.html","_self")
  }
@@ -280,7 +282,11 @@ let data =await promis.json()
        })
     }
 
-
+          
+            if(dropdown.children.length===0){
+              
+               window.alert("There is No Completed Work")
+            }
  
 
  })
@@ -426,6 +432,7 @@ let data =await promis.json()
     
    })
    let data =await promi.json()
+   window.alert("payment Transation Success")
    section.style.display="none"
  }
  //-----------------------List of Vendor-----------------------------
@@ -462,6 +469,9 @@ let data =await promis.json()
    })
     
  })
+    if(dropdown.children.length===0){
+      window.alert("There is No Vendors ")
+    }
  })
 
 async function listOfV(vendorid){

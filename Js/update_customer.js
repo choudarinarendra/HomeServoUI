@@ -1,9 +1,11 @@
-
+let id=null;
 update_cust()
 async function update_cust(){
     let promi= await fetch(`http://localhost:8080/customers/${Number(sessionStorage.getItem("cust_id"))}`)
     let obj=await promi.json()
     console.log(obj);
+    console.log(obj.data.address.id);
+    id=obj.data.address.id
     let inputs=document.getElementsByTagName("input");
 
     inputs[0].value=obj.data.id;
@@ -19,6 +21,8 @@ async function update_cust(){
     inputs[10].value=obj.data.address.pincode;
     inputs[11].value=obj.data.address.district;
     inputs[12].value=obj.data.address.state;
+    
+
     
 
 }
@@ -54,7 +58,11 @@ if(result){
         phone:Number(obj.phone),
         password:obj.password,
         id:Number(obj.id),
-        address:{
+        
+    }
+    let  address={
+    
+            id:id,
             d_No:obj.d_No,
             district:obj.district,
             landMark:obj.landMark,
@@ -62,9 +70,11 @@ if(result){
             state:obj.state,
             street:obj.street
         }
-    }
+    
     // console.log(cust_obj);
+    upAdddress(address)
     register(cust_obj)
+    
 }
 })
    async function register(obj){
@@ -87,6 +97,19 @@ if(result){
         window.open("./customerPage.html","_self")
        }
    }
+   async function upAdddress(address){
+    let promis=await fetch("http://localhost:8080/address",{
+        method:"PUT",
+        headers:{
+            'Content-Type': 'application/json'
+        },
+        body:JSON.stringify(address)
+
+    })
+    let data= await promis.json();
+    console.log(data);
+   }
+
 function nameVali(name){
     let name_err=document.getElementById("err_name")
  if(name.length<=5){

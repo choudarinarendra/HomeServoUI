@@ -1,8 +1,11 @@
+let id1=null
 update_vend()
 async function update_vend(){
     let promi= await fetch(`http://localhost:8080/vendors/${Number(sessionStorage.getItem("Ven_id"))}`)
     let obj=await promi.json()
     console.log(obj);
+    id1=obj.data.address.id
+    console.log(id1);
     let inputs=document.getElementsByTagName("input");
 
     inputs[0].value=obj.data.id;
@@ -58,18 +61,20 @@ if(result){
         role:obj.role,
         phoneNo:Number(obj.phoneNo),
         password:obj.password,
-        address:{
-            d_No:obj.d_No,
-            district:obj.district,
-            landMark:obj.landMark,
-            pincode:Number(obj.pincode),
-            state:obj.state,
-            street:obj.street
-        }
+        
         
     }
-    console.log(cust_obj);
+ let   address={
+         id:id1,
+        d_No:obj.d_No,
+        district:obj.district,
+        landMark:obj.landMark,
+        pincode:Number(obj.pincode),
+        state:obj.state,
+        street:obj.street
+    }
     
+    upAdddress(address)
     register(cust_obj)
 }
 
@@ -93,6 +98,18 @@ if(result){
        }else{
         window.open("./vendorpage.html")
        }
+   }
+   async function upAdddress(address){
+    let promis=await fetch("http://localhost:8080/address",{
+        method:"PUT",
+        headers:{
+            'Content-Type': 'application/json'
+        },
+        body:JSON.stringify(address)
+
+    })
+    let data= await promis.json();
+    console.log(data);
    }
 function nameVali(name){
     let name_err=document.getElementById("err_name")
