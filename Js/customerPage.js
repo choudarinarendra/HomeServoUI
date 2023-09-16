@@ -257,15 +257,20 @@ let data =await promis.json()
         if(work.customer.id===Number(sessionStorage.getItem('cust_id'))){
           if(work.startDate!=null&work.endDate!=null){
                  if(work.cost!==null){
+              
                   
             if(work.cost.mode===null){
-             
+
+                 
+             if(work.vendor!=null){
             
                          let li=document.createElement('li')
                         li.textContent=work.typeOfWork
                         li.setAttribute('id',work.cost.id)
                         li.setAttribute('name',work.vendor.id)     
-                        dropdown.appendChild(li)          
+                        dropdown.appendChild(li)  
+             } 
+
             }
           }
           }
@@ -287,6 +292,7 @@ let data =await promis.json()
               
                window.alert("There is No Completed Work")
             }
+            
  
 
  })

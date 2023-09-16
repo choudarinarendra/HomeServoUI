@@ -29,11 +29,18 @@ let login=async (email,password)=>{
    }
  }else{
   console.log(data1);
+  console.log(data1.data.email);
+  console.log(email);
+  console.log(password);
+  console.log(data1.data.password);
   if(data1.data.email===email&&data1.data.password===password){
     sessionStorage.setItem("cust_id",data1.data.id)
+    console.log("hello");
     
     
     window.open("http://127.0.0.1:5500/customerPage.html","_self")
+  }else{
+    console.log("else working");
   }
  }
 }
