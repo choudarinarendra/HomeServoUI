@@ -253,6 +253,7 @@ let data =await promis.json()
          let promis1=await fetch(`http://localhost:8080/works/${data[0].id}`)
      let data1 =await promis1.json()
        data1.data.map((work)=>{
+        if(work.customer!=null){
         
         if(work.customer.id===Number(sessionStorage.getItem('cust_id'))){
           if(work.startDate!=null&work.endDate!=null){
@@ -269,21 +270,22 @@ let data =await promis.json()
                         li.setAttribute('id',work.cost.id)
                         li.setAttribute('name',work.vendor.id)     
                         dropdown.appendChild(li)  
-             } 
+                     } 
 
-            }
-          }
-          }
-        }
-        let liElements=document.querySelectorAll("#dropdown li")
+                    }
+                   }
+                  }
+                 }
+                      let liElements=document.querySelectorAll("#dropdown li")
   
                 liElements.forEach((li)=>{
                  li.addEventListener('click',()=>{
                            demo12(Number(li.id),Number(li.getAttribute('name')),li.textContent)
               
-                 })
+                   })
                   
-               })
+                 })
+              }
        })
     }
 
